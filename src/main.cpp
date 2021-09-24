@@ -38,7 +38,13 @@ extern "C" DLLEXPORT bool SKSEAPI
 	}
 
 	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_5_39) {
+	if (ver
+#ifndef SKYRIMVR
+		< SKSE::RUNTIME_1_5_39
+#else
+		> SKSE::RUNTIME_VR_1_4_15_1
+#endif
+	) {
 		logger::critical(FMT_STRING("Unsupported runtime version {}"sv), ver.string());
 		return false;
 	}
@@ -59,7 +65,8 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	Settings::GetSingleton()->LoadSettings();
 
 	auto messaging = SKSE::GetMessagingInterface();
-	messaging->RegisterListener([](SKSE::MessagingInterface::Message* a_msg)
+	messaging->RegisterListener(
+		[](SKSE::MessagingInterface::Message* a_msg)
 		{
 			switch (a_msg->type) {
 			case SKSE::MessagingInterface::kDataLoaded:
