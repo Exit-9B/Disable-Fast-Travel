@@ -38,11 +38,11 @@ extern "C" DLLEXPORT bool SKSEAPI
 	}
 
 	const auto ver = a_skse->RuntimeVersion();
-	if (ver
+	if (ver <
 #ifndef SKYRIMVR
-		< SKSE::RUNTIME_1_5_39
+		SKSE::RUNTIME_1_5_39
 #else
-		> SKSE::RUNTIME_VR_1_4_15_1
+		SKSE::RUNTIME_VR_1_4_15
 #endif
 	) {
 		logger::critical(FMT_STRING("Unsupported runtime version {}"sv), ver.string());
@@ -55,7 +55,7 @@ extern "C" DLLEXPORT bool SKSEAPI
 
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
-	logger::info("{} loaded"sv, Version::PROJECT);
+	logger::info("{} v{} loaded"sv, Version::PROJECT, Version::NAME);
 
 	SKSE::Init(a_skse);
 	SKSE::AllocTrampoline(8);
