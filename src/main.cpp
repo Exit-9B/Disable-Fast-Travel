@@ -22,7 +22,7 @@ extern "C" DLLEXPORT bool SKSEAPI
 	log->set_level(spdlog::level::trace);
 #else
 	log->set_level(spdlog::level::info);
-	log->flush_on(spdlog::level::warn);
+	log->flush_on(spdlog::level::info);
 #endif
 
 	spdlog::set_default_logger(std::move(log));
@@ -38,7 +38,13 @@ extern "C" DLLEXPORT bool SKSEAPI
 	}
 
 	const auto ver = a_skse->RuntimeVersion();
-	if (ver < SKSE::RUNTIME_1_5_39) {
+	if (ver <
+#ifndef SKYRIMVR
+		SKSE::RUNTIME_1_5_39
+#else
+		SKSE::RUNTIME_VR_1_4_15
+#endif
+	) {
 		logger::critical(FMT_STRING("Unsupported runtime version {}"sv), ver.string());
 		return false;
 	}
@@ -49,7 +55,7 @@ extern "C" DLLEXPORT bool SKSEAPI
 
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
-	logger::info("{} loaded"sv, Version::PROJECT);
+	logger::info("{} v{} loaded"sv, Version::PROJECT, Version::NAME);
 
 	SKSE::Init(a_skse);
 	SKSE::AllocTrampoline(8);
@@ -59,7 +65,8 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	Settings::GetSingleton()->LoadSettings();
 
 	auto messaging = SKSE::GetMessagingInterface();
-	messaging->RegisterListener([](SKSE::MessagingInterface::Message* a_msg)
+	messaging->RegisterListener(
+		[](SKSE::MessagingInterface::Message* a_msg)
 		{
 			switch (a_msg->type) {
 			case SKSE::MessagingInterface::kDataLoaded:
