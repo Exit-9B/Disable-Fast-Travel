@@ -1,8 +1,6 @@
-# Disable Fast Travel for VR
+# Disable Fast Travel for SSE/VR
 
 Disable fast travel in the map menu and fix UI bugs that prevent placing custom markers.
-
-This is a VR example using [vr_address_tools](https://github.com/alandtse/vr_address_tools) and a modified [commonlibvr](https://github.com/alandtse/CommonLibVR/tree/vr). However, please note the offset is not correct at [FastTravelmanager.cpp:14](https://github.com/alandtse/Disable-Fast-Travel/blob/main/src/FastTravelManager.cpp#L14).
 
 ## Requirements
 * [CMake](https://cmake.org/)
@@ -21,18 +19,25 @@ This is a VR example using [vr_address_tools](https://github.com/alandtse/vr_add
 
 ## Building
 ```
-git clone https://github.com/alandtse/Disable-Fast-Travel
+git clone https://github.com/Exit-9B/Disable-Fast-Travel.git
 cd Disable-Fast-Travel
-```
 
-### SSE
 ```
+### CommonLibSSE/CommonLibVR
+```
+# pull CommonLibSSE and CommonLibVR
+# alternatively, override by setting environment variable `CommonLibSSEPath` or `CommonLibVRPath` if you need something different from extern
+
 git submodule update --init --recursive
+
+```
+### SSE
+
+```
 cmake -B build -S .
 ```
 
 ### VR
-Set environment variable `CommonLibVRPath` to CommonLibVR location.
 ```
 cmake -B build -S . DBUILD_SKYRIMVR=ON
 ```
