@@ -39,5 +39,5 @@ cmake -B build -S .
 
 ### VR
 ```
-cmake -B build -S . DBUILD_SKYRIMVR=ON
+cmake -B build -S . -DBUILD_SKYRIMVR=ON
 ```
