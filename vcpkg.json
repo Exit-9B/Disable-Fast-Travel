@@ -1,12 +1,12 @@
 {
   "name": "disablefasttravel",
-  "version-string": "1.0.0",
+  "version-string": "1.0.1",
   "description": "Disable fast travel in the map menu",
   "homepage": "https://github.com/Exit-9B/Disable-Fast-Travel",
   "license": "MIT",
   "dependencies": [
     "boost-stl-interfaces",
-    "span-lite",
+    "rsm-binary-io",
     "spdlog",
     "xbyak",
     "simpleini"

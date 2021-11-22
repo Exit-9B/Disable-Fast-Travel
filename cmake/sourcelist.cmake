@@ -1,8 +1,14 @@
 set(SOURCES ${SOURCES}
-	src/main.cpp
-	src/PCH.cpp
-
-	src/Hooks.cpp
-	src/Settings.cpp
+	src/Extensions.h
 	src/FastTravelManager.cpp
+	src/FastTravelManager.h
+	src/Hooks.cpp
+	src/Hooks.h
+	src/PCH.cpp
+	src/PCH.h
+	src/Patches.cpp
+	src/Patches.h
+	src/Settings.cpp
+	src/Settings.h
+	src/main.cpp
 )
