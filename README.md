@@ -1,6 +1,8 @@
 # Disable Fast Travel for SSE/VR
 
 Disable fast travel in the map menu and fix UI bugs that prevent placing custom markers.
+* [SSE/AE](https://www.nexusmods.com/skyrimspecialedition/mods/54217)
+* [VR](https://www.nexusmods.com/skyrimspecialedition/mods/59817)
 
 ## Requirements
 * [CMake](https://cmake.org/)
@@ -11,7 +13,11 @@ Disable fast travel in the map menu and fix UI bugs that prevent placing custom 
 * [Visual Studio Community 2019](https://visualstudio.microsoft.com/)
 	* C++ Clang tools for Windows
 	* Desktop development with C++
-
+* [CommonLibSSE](https://github.com/Exit-9B/CommonLibSSE)
+	* You need to build master or ae branch for SSE or AE
+	* Add this as as an environment variable `CommonLibSSEPath`
+* [CommonLibVR](https://github.com/alandtse/CommonLibVR/tree/vr)
+	* Add this as as an environment variable `CommonLibVRPath`
 ## Register Visual Studio as a Generator
 * Open `x64 Native Tools Command Prompt`
 * Run `cmake`
@@ -26,7 +32,7 @@ cd Disable-Fast-Travel
 ### CommonLibSSE/CommonLibVR
 ```
 # pull CommonLibSSE and CommonLibVR
-# alternatively, override by setting environment variable `CommonLibSSEPath` or `CommonLibVRPath` if you need something different from extern
+# alternatively, do not pull and set environment variable `CommonLibSSEPath` or `CommonLibVRPath` if you need something different from extern
 
 git submodule update --init --recursive
 
