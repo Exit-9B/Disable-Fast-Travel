@@ -62,12 +62,12 @@ bool FastTravelManager::FastTravelMarkerClick(RE::MapMenu* a_mapMenu)
 
 	bool disabled = Settings::GetSingleton()->FastTravelDisabled;
 
-	if (!disabled || Actor::IsOnFlyingMount(playerCharacter)) {
-		if (Actor::CanFastTravel(playerCharacter, 0)) {
+	if (!disabled || ::Actor::IsOnFlyingMount(playerCharacter)) {
+		if (::Actor::CanFastTravel(playerCharacter, 0)) {
 			return true;
 		}
 	}
 
-	MapMenu::MapClick(a_mapMenu);
+	::MapMenu::MapClick(a_mapMenu);
 	return false;
 }
