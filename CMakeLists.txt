@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 set(NAME "DisableFastTravel")
 set(VERSION 1.0.0)
-
+set(VR_VERSION 1)
 # ---- Options ----
 
 option(COPY_BUILD "Copy the build output to the Skyrim directory." OFF)
@@ -37,7 +37,7 @@ if(BUILD_SKYRIMVR)
 	set_from_environment(SkyrimVRPath)
 	set(SkyrimPath ${SkyrimVRPath})
 	set(SkyrimVersion "Skyrim VR")
-	set(VERSION "${VERSION}.1")
+	set(VERSION "${VERSION}.${VR_VERSION}")
 else()
 	set(CommonLibName "CommonLibSSE")
 	set_from_environment(Skyrim64Path)
