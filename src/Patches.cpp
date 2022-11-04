@@ -7,6 +7,12 @@ bool Patch::InstallMarkerClickPatch(MarkerClickCallback* a_callback)
 	constexpr REL::ID MapMenu_MarkerClick_offset(53095);
 	static REL::Relocation<std::uintptr_t> hook{ MapMenu_MarkerClick_offset, 0x31F };
 
+	constexpr auto pattern = REL::make_pattern<"33 D2 48 8B 0D ?? ?? ?? ?? E8 ?? ?? ?? ??">();
+	if (!pattern.match(hook.address())) {
+		logger::critical("Assembly did not match, failed to install"sv);
+		return false;
+	}
+
 	struct Patch : Xbyak::CodeGenerator
 	{
 		Patch()

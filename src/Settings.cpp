@@ -11,7 +11,7 @@ void Settings::LoadSettings()
 {
 	CSimpleIniA ini;
 	ini.SetUnicode();
-	ini.LoadFile(fmt::format(R"(.\Data\SKSE\Plugins\{}.ini)", Version::PROJECT).c_str());
+	ini.LoadFile(fmt::format(R"(.\Data\SKSE\Plugins\{}.ini)", Plugin::NAME).c_str());
 
 	FastTravelDisabled = ini.GetBoolValue("FastTravel", "bFastTravelDisabled", true);
 	FlyingMountCruiseEnabled = ini.GetBoolValue("FastTravel", "bFlyingMountCruiseEnabled", true);
